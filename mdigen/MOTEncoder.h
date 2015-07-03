@@ -81,6 +81,9 @@ protected:
   uint16_t block_size;
   PacketEncoder packet_encoder;
   MotDirectory directory;
+#ifdef GINGA_EXPERIMENTAL
+  GingaData ginga;
+#endif
   DataGroupEncoder dge;
   map<string, MotObject>::iterator current_object;
   Flags flags;

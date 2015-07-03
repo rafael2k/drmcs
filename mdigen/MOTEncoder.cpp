@@ -123,7 +123,29 @@ void MOTEncoder::ReConfigure(
   directory.clear();
   directory.setSortedHeaderInformation();
   directory.setAlwaysSendMimeType(flags.always_send_mime_type);
-  //directory.next_transport_id = 0; // should this be continuous across reconfigurations?
+#ifdef GINGA_EXPERIMENTAL
+  while (ginga.hasEditingCommand())
+  {
+      directory.setEditingCommand(ginga.popEditingCommand());
+  }
+  
+  if (ginga.hasEditingCommand())
+  {
+      directory.setEditingCommand(ginga.popEditingCommand());
+  }
+  
+  if (ginga.hasTimeBaseReference())
+  {
+      directory.setTimeBaseReference(ginga.popTimeBaseReference());
+  }
+
+  if (ginga.hasTimeBaseEndpoint())
+  {
+      directory.setTimeBaseEndpoint(ginga.popTimeBaseEndpoint());
+  }
+#endif
+
+//directory.next_transport_id = 0; // should this be continuous across reconfigurations?
   for (map<uint8_t,string>::iterator i = profile_index.begin();
        i != profile_index.end(); i++)
   {

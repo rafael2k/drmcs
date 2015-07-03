@@ -69,6 +69,28 @@ void MotDirectory::setDefaultPermitOutdatedVersions(uint8_t n)
   putPermitOutdatedVersions(extension, n);
 }
 
+#ifdef GINGA_EXPERIMENTAL
+void MotDirectory::setEditingCommand(uint8_t *ec) 
+{
+    MotObject::putExtensionParameterHeader(out, 0x24, 1);
+    /* TODO */
+}
+
+void MotDirectory::setTimeBaseReference(uint8_t *tbr) 
+{
+    MotObject::putExtensionParameterHeader(out, 0x24, 1);
+    /* TODO */
+}
+
+void MotDirectory::setTimeBaseEndpoint(uint8_t *tbe) 
+{
+    MotObject::putExtensionParameterHeader(out, 0x25, 1);
+    /* TODO */
+}
+#endif
+
+
+
 void MotDirectory::putExpirationRelative(bytevector& out, time_t t) 
 {
   MotObject::putExtensionParameterHeader(out, 0x09, 1);

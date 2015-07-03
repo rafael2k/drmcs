@@ -63,7 +63,13 @@ public:
   void setDefaultExpirationRelative(time_t t);
   void setDefaultExpirationAbsolute(timespec t);
   void setAlwaysSendMimeType(bool);
+#ifdef GINGA_EXPERIMENTAL
+  void setEditingCommand(uint8_t *ec);
+  void setTimeBaseReference(uint8_t *tbr);
+  void setTimeBaseEndpoint(uint8_t *tbe);
+#endif
 
+  
   // query methods
 
   // methods to build PDUs
